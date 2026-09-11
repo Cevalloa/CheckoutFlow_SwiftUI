@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Cheeseburger",
+      "price": 12.99,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "French Fries",
+      "price": 4.99,
+      "quantity": 2
+    },
+    {
+      "id": 3,
+      "name": "Iced Tea",
+      "price": 2.49,
+      "quantity": 1
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": 101,
+      "type": "Visa",
+      "lastFour": "4242"
+    },
+    {
+      "id": 102,
+      "type": "Mastercard",
+      "lastFour": "9912"
+    },
+    {
+      "id": 103,
+      "type": "Amex",
+      "lastFour": "1005"
+    }
+  ],
+  "deliveryFee": 2.99,
+  "taxRate": 0.08
+}
