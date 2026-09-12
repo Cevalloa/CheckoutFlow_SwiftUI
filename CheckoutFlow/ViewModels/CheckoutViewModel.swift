@@ -40,7 +40,7 @@ final class CheckoutViewModel {
     var canPlaceOrder: Bool {
         // TODO: An order should only be placeable when the cart is not empty
         // and a payment method has been selected.
-        false
+        !items.isEmpty && selectedPaymentMethodID != nil
     }
 
     func load() async {

@@ -47,6 +47,14 @@ struct ContentView: View {
                             }
                         }
                     }
+                    
+                    Section {
+                        Button {
+                            
+                        } label: {
+                            Text("Place order")
+                        }.disabled(viewModel.canPlaceOrder)
+                    }
                 }
                 
             }
