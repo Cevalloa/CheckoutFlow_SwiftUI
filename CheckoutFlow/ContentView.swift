@@ -16,12 +16,16 @@ struct ContentView: View {
                 // - subtotal, delivery fee, tax, and total
                 // - payment-method selection
                 // - a Place Order button
-                Text("Checkout")
+                
+                List(viewModel.items) { item in
+                    Text(item.name)
+                }
             }
             .navigationTitle("Checkout")
         }
         .task {
             // TODO: Trigger the initial checkout load.
+            await viewModel.load()
         }
         .alert("Order Confirmed", isPresented: $viewModel.isOrderPlaced) {
             Button("OK", role: .cancel) { }

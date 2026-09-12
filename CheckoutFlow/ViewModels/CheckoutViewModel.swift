@@ -49,6 +49,21 @@ final class CheckoutViewModel {
         // 3. Load CheckoutData from the service.
         // 4. Copy the loaded values into the observable properties above.
         // 5. Handle errors and restore loading state.
+        errorMessage = nil
+        isLoading = true
+        
+        do {
+            let checkoutData = try await service.loadCheckout()
+            items = checkoutData.items
+            paymentMethods = checkoutData.paymentMethods
+            deliveryFee = checkoutData.deliveryFee
+            taxRate = checkoutData.taxRate
+            
+            isLoading = false
+        } catch {
+            errorMessage = error.localizedDescription
+            isLoading = false
+        }
     }
 
     func selectPaymentMethod(_ paymentMethod: PaymentMethod) {
