@@ -36,6 +36,14 @@ struct ContentView: View {
                             HStack {
                                 Text(paymentMethod.type)
                                 Text(paymentMethod.lastFour)
+                                Button {
+                                    viewModel.selectPaymentMethod(paymentMethod)
+                                } label: {
+                                    Text(viewModel.selectedPaymentMethodID == paymentMethod.id
+                                         ? "Selected payment"
+                                         : ""
+                                    )
+                                }
                             }
                         }
                     }

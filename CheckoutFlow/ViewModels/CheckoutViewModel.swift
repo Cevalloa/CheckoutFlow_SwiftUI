@@ -69,6 +69,7 @@ final class CheckoutViewModel {
 
     func selectPaymentMethod(_ paymentMethod: PaymentMethod) {
         // TODO: Select exactly one payment method.
+        selectedPaymentMethodID = paymentMethod.id
     }
 
     func placeOrder() {
