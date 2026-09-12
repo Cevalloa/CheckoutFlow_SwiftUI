@@ -17,49 +17,56 @@ struct ContentView: View {
                 // - payment-method selection
                 // - a Place Order button
                 
-                List() {
-                    Section {
-                        ForEach(viewModel.items) { item in
-                            HStack {
-                                Text(item.name)
-                                Text("\(item.quantity)")
-                                Text("\(Double(item.quantity) * item.price)")
-                            }
-                        }
-                    }
-                    Section {
-                        Text("Total: \(viewModel.total)")
-                    }
-                    
-                    Section {
-                        ForEach(viewModel.paymentMethods) { paymentMethod in
-                            HStack {
-                                Text(paymentMethod.type)
-                                Text(paymentMethod.lastFour)
-                                Button {
-                                    viewModel.selectPaymentMethod(paymentMethod)
-                                } label: {
-                                    Text(viewModel.selectedPaymentMethodID == paymentMethod.id
-                                         ? "Selected payment"
-                                         : ""
-                                    )
+                if viewModel.isLoading {
+                    ProgressView("Loading checkout")
+                } else if let errorMessage = viewModel.errorMessage {
+                    ContentUnavailableView(errorMessage, systemImage: "xmark")
+                } else if viewModel.items.isEmpty {
+                    ContentUnavailableView("Unavailable items", systemImage: "xmark")
+                } else {
+                    List() {
+                        Section {
+                            ForEach(viewModel.items) { item in
+                                HStack {
+                                    Text(item.name)
+                                    Text("\(item.quantity)")
+                                    Text("\(Double(item.quantity) * item.price)")
                                 }
                             }
                         }
-                    }
-                    
-                    Section {
-                        Button {
-                            if viewModel.canPlaceOrder {
-                                viewModel.isOrderPlaced = true
-                            }
-                        } label: {
-                            Text("Place order")
+                        Section {
+                            Text("Total: \(viewModel.total)")
                         }
-                        .disabled(!viewModel.canPlaceOrder)
+                        
+                        Section {
+                            ForEach(viewModel.paymentMethods) { paymentMethod in
+                                HStack {
+                                    Text(paymentMethod.type)
+                                    Text(paymentMethod.lastFour)
+                                    Button {
+                                        viewModel.selectPaymentMethod(paymentMethod)
+                                    } label: {
+                                        Text(viewModel.selectedPaymentMethodID == paymentMethod.id
+                                             ? "Selected payment"
+                                             : ""
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                        
+                        Section {
+                            Button {
+                                if viewModel.canPlaceOrder {
+                                    viewModel.isOrderPlaced = true
+                                }
+                            } label: {
+                                Text("Place order")
+                            }
+                            .disabled(!viewModel.canPlaceOrder)
+                        }
                     }
                 }
-                
             }
             .navigationTitle("Checkout")
         }
