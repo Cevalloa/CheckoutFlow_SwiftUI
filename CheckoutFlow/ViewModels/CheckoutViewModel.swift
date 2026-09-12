@@ -74,6 +74,7 @@ final class CheckoutViewModel {
 
     func placeOrder() {
         // TODO: Mark the order as placed only when the current state is valid.
+        guard canPlaceOrder else { return }
         isOrderPlaced = true
     }
 }
