@@ -50,10 +50,13 @@ struct ContentView: View {
                     
                     Section {
                         Button {
-                            
+                            if viewModel.canPlaceOrder {
+                                viewModel.isOrderPlaced = true
+                            }
                         } label: {
                             Text("Place order")
-                        }.disabled(viewModel.canPlaceOrder)
+                        }
+                        .disabled(!viewModel.canPlaceOrder)
                     }
                 }
                 
