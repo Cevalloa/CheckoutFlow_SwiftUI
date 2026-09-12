@@ -33,3 +33,6 @@ Complete the checkout experience using the bundled `checkout.json` data.
 ## Optional Extension
 
 Allow the quantity of each cart item to be increased or decreased and have all totals update immediately.
+
+<img width="334" height="705" alt="Screenshot 2026-09-12 at 11 13 19 AM" src="https://github.com/user-attachments/assets/ee2c8885-3382-4d2a-8316-5c1984956253" />
+
