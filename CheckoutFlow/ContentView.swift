@@ -18,7 +18,11 @@ struct ContentView: View {
                 // - a Place Order button
                 
                 List(viewModel.items) { item in
-                    Text(item.name)
+                    HStack {
+                        Text(item.name)
+                        Text("\(item.quantity)")
+                        Text("\(Double(item.quantity) * item.price)")
+                    }
                 }
             }
             .navigationTitle("Checkout")

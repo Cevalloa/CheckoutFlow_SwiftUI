@@ -22,18 +22,19 @@ final class CheckoutViewModel {
     }
 
     var subtotal: Double {
-        // TODO: Calculate the subtotal from item price and quantity.
-        0
+        return items.map { cartItem in
+            cartItem.price
+        }.reduce(0, +)
     }
 
     var tax: Double {
         // TODO: Calculate tax from the subtotal and tax rate.
-        0
+        return subtotal * taxRate
     }
 
     var total: Double {
         // TODO: Calculate the final total.
-        0
+        subtotal + tax + deliveryFee
     }
 
     var canPlaceOrder: Bool {
