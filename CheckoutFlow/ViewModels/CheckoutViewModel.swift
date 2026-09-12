@@ -23,7 +23,7 @@ final class CheckoutViewModel {
 
     var subtotal: Double {
         return items.map { cartItem in
-            cartItem.price
+            cartItem.price * Double(cartItem.quantity)
         }.reduce(0, +)
     }
 
